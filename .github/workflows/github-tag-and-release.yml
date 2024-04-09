@@ -4,6 +4,8 @@ on:
     branches:
       - main
 
+permissions: # Explicitly define permissions
+  contents: write
 env:
   NODE_VERSION: 18.x
 
