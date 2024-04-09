@@ -1,0 +1,33 @@
+mat-card {
+  margin: 1em;
+
+  .section-icon {
+    height: auto !important;
+    width: auto !important;
+
+    mat-icon {
+      vertical-align: middle;
+    }
+  }
+
+  table {
+    th {
+      min-width: 10em;
+      padding-right: 0.5em;
+      text-align: left;
+    }
+
+    td {
+      width: 100%;
+      padding: 0.5em;
+    }
+  }
+}
+
+.file-uploader {
+  margin: 1em;
+}
+
+.datasets-table {
+  margin: 1em;
+}

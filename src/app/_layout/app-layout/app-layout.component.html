@@ -1,0 +1,6 @@
+<div [ngClass]="{ 'anonymous-site': (loggedIn$ | async) === false }">
+  <app-app-header></app-app-header>
+  <div class="main">
+    <router-outlet></router-outlet>
+  </div>
+</div>

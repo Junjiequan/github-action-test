@@ -1,0 +1,42 @@
+@media only screen and (min-width: 1280px) {
+  mat-table {
+    margin-bottom: 5em;
+
+    .mat-mdc-column-standard_select,
+    .mat-mdc-column-select {
+      max-width: 75px;
+      justify-content: center;
+    }
+
+    mat-row:hover {
+      background-color: rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+    }
+  }
+  mat-card.smallData {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 1279px) {
+  .largeData {
+    display: none;
+  }
+  mat-card.smallData {
+    margin: 1em 0;
+
+    .title {
+      font-size: 1.1em;
+    }
+    mat-list-item:hover {
+      background-color: rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+    }
+  }
+}
+
+mat-card {
+  mat-list-item.mdc-list-item.mdc-list-item--with-one-line {
+    height: auto;
+  }
+}

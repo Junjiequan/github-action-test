@@ -1,0 +1,161 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "schematics": {
+    "@schematics/angular": "scss"
+  },
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "scicat-frontend": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "prefix": "app",
+          "style": "scss"
+        },
+        "@schematics/angular:directive": {
+          "prefix": "app"
+        },
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "allowedCommonJsDependencies": [
+              "deep-equal",
+              "exceljs",
+              "file-saver",
+              "socket.io-client"
+            ],
+            "outputPath": "dist",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "src/assets/",
+              "src/favicon.ico",
+              "src/robots.txt",
+              "src/manifest.json"
+            ],
+            "styles": ["src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "3.2mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.production.ts"
+                }
+              ],
+              "assets": [
+                "src/assets/",
+                "src/favicon.ico",
+                "src/robots.txt",
+                "src/manifest.json"
+              ],
+              "outputHashing": "all"
+            },
+            "default": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "scicat-frontend:build:production"
+            },
+            "default": {
+              "browserTarget": "scicat-frontend:build:default"
+            }
+          },
+          "options": {
+            "proxyConfig": "scripts/local.proxy.config.json",
+            "host": "127.0.0.1",
+            "port": 4200
+          },
+          "defaultConfiguration": "default"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "scicat-frontend:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "polyfills": ["src/polyfills.ts", "zone.js", "zone.js/testing"],
+            "tsConfig": "tsconfig.spec.json",
+            "karmaConfig": "karma.conf.js",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "src/assets",
+              "src/favicon.ico",
+              "src/robots.txt",
+              "src/app/loopback_form",
+              "src/assets/icons/android-chrome-192x192.png",
+              "src/assets/icons/android-chrome-512x512.svg",
+              "src/assets/icons/apple-touch-icon-precomposed.png",
+              "src/assets/icons/apple-touch-icon.png",
+              "src/assets/icons/favicon-16x16.png",
+              "src/assets/icons/favicon-32x32.png",
+              "src/assets/icons/mstile-70x70.png",
+              "src/assets/icons/mstile-150x150.png",
+              "src/assets/icons/mstile-310x150.png",
+              "src/assets/icons/mstile-310x310.png",
+              "src/assets/icons/safari-pinned-tab.svg",
+              "src/manifest.json"
+            ],
+            "codeCoverage": true,
+            "codeCoverageExclude": [
+              "src/app/shared/sdk/**",
+              "src/environments/**",
+              "src/polyfills.ts",
+              "src/test.ts"
+            ],
+            "styles": ["src/styles.scss"],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "analytics": false
+  }
+}

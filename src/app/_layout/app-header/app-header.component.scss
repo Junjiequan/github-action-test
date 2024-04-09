@@ -1,0 +1,59 @@
+.header {
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  z-index: 1000;
+
+  mat-toolbar {
+    height: 3.5rem;
+
+    a {
+      height: 2.5rem;
+      padding: 0.5rem;
+
+      .logo {
+        height: 100%;
+        margin-right: 0.5rem;
+      }
+    }
+
+    .spacer {
+      flex: 1 1 auto;
+    }
+
+    .toplink {
+      padding: 0.5rem 1rem;
+      font: bold;
+      font-size: 11pt;
+
+      mat-icon {
+        vertical-align: middle;
+      }
+    }
+
+    button {
+      vertical-align: middle;
+    }
+
+    .user-button {
+      font-size: 0.75rem;
+      line-height: 1rem;
+      height: auto;
+
+      .user-image {
+        height: 2rem;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1279px) {
+  .large-screen-text {
+    display: none;
+  }
+}
+
+::ng-deep .custom-menu .mat-mdc-menu-content:not(:empty) {
+  padding-top: 1px;
+  padding-bottom: 1px;
+}

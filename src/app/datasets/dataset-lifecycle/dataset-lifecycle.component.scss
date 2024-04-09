@@ -1,0 +1,48 @@
+mat-card {
+  margin: 1em;
+
+  .section-icon {
+    height: auto !important;
+    width: auto !important;
+
+    mat-icon {
+      vertical-align: middle;
+    }
+  }
+
+  .lifecycle-table {
+    td {
+      padding: 0.5em;
+    }
+
+    th {
+      text-align: left;
+      padding-right: 0.5em;
+    }
+  }
+
+  .download-button {
+    margin-bottom: 0.5em;
+  }
+
+  .history-table {
+    width: 100%;
+
+    tr.detail-row {
+      height: 0;
+    }
+
+    .item-row td {
+      border-bottom-width: 0;
+    }
+
+    .item-detail {
+      overflow: hidden;
+
+      .history-value {
+        max-width: 70vw;
+        padding-bottom: 1em;
+      }
+    }
+  }
+}

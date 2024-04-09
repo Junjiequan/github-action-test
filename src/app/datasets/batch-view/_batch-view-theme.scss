@@ -1,0 +1,18 @@
+@use "@angular/material" as mat;
+
+@mixin color($theme) {
+  $color-config: map-get($theme, "color");
+  $primary: map-get($color-config, "primary");
+  mat-table {
+    mat-header-row {
+      background: mat.get-color-from-palette($primary, "default");
+    }
+  }
+}
+
+@mixin theme($theme) {
+  $color-config: mat.get-color-config($theme);
+  @if $color-config != null {
+    @include color($theme);
+  }
+}

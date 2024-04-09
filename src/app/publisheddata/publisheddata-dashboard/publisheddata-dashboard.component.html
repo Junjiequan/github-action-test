@@ -1,0 +1,11 @@
+<shared-table
+  [dataSource]="dataSource"
+  [columnsdef]="columns"
+  [pageSize]="5"
+  (rowClick)="onRowClick($event)"
+  (selectAll)="onSelectAll($event)"
+  (selectOne)="onSelectOne($event)"
+  (shareClick)="onShareClick()"
+  [select]="select"
+>
+</shared-table>

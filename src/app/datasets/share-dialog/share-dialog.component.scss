@@ -1,0 +1,18 @@
+mat-dialog-content {
+  .email-field {
+    width: 100%;
+    margin-bottom: 1em;
+  }
+
+  .alert {
+    padding: 1rem;
+    margin: 0.5rem 0rem;
+
+    &.alert-warn {
+      background: var(--theme-warn-lighter);
+      color: var(--theme-warn-lighter-contrast);
+      border: 1px solid var(--theme-warn-default);
+      border-radius: 10px;
+    }
+  }
+}

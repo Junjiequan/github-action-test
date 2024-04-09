@@ -1,0 +1,139 @@
+<div fxLayout="row">
+  <div fxFlex="140">
+    <mat-card>
+      <mat-card-header>
+        <p>You are about to publish {{ datasetCount }} datasets.</p>
+      </mat-card-header>
+
+      <mat-card-content>
+        <form>
+          <mat-form-field>
+            <mat-label>Title</mat-label>
+            <input
+              id="titleInput"
+              required
+              matInput
+              autocomplete="off"
+              [(ngModel)]="form.title"
+              name="title"
+            />
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Creators</mat-label>
+            <mat-chip-grid required #chipListCreators>
+              <mat-chip-row
+                *ngFor="let name of form.creators"
+                (removed)="removeCreator(name)"
+              >
+                {{ name }}
+                <mat-icon matChipRemove>cancel</mat-icon>
+              </mat-chip-row>
+              <input
+                matInput
+                [matChipInputFor]="chipListCreators"
+                [matChipInputAddOnBlur]="true"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                (matChipInputTokenEnd)="addCreator($event)"
+              />
+            </mat-chip-grid>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Publisher</mat-label>
+            <input
+              required
+              matInput
+              autocomplete="off"
+              [(ngModel)]="form.publisher"
+              name="publisher"
+            />
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Resource Type</mat-label>
+            <mat-select
+              required
+              matInput
+              name="resourceType"
+              [(ngModel)]="form.resourceType"
+            >
+              <mat-option value="raw"> raw </mat-option>
+              <mat-option value="derived"> derived </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Description</mat-label>
+            <textarea
+              required
+              matInput
+              autocomplete="off"
+              [(ngModel)]="form.description"
+              name="Description"
+              rows="5"
+            ></textarea>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Abstract</mat-label>
+            <textarea
+              id="abstractInput"
+              required
+              matInput
+              autocomplete="off"
+              [(ngModel)]="form.abstract"
+              name="abstract"
+              rows="5"
+            ></textarea>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Download link</mat-label>
+            <input
+              matInput
+              autocomplete="off"
+              [(ngModel)]="form.downloadLink"
+              name="downloadLink"
+            />
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Related publications</mat-label>
+            <mat-chip-grid #chipListRelatedPub>
+              <mat-chip-row
+                *ngFor="let relatedPublication of form.relatedPublications"
+                (removed)="removeRelatedPublication(relatedPublication)"
+              >
+                {{ relatedPublication }}
+                <mat-icon matChipRemove>cancel</mat-icon>
+              </mat-chip-row>
+              <input
+                matInput
+                [matChipInputFor]="chipListRelatedPub"
+                [matChipInputAddOnBlur]="true"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                (matChipInputTokenEnd)="addRelatedPublication($event)"
+              />
+            </mat-chip-grid>
+          </mat-form-field>
+
+          <button
+            id="publishButton"
+            (click)="onPublish()"
+            mat-raised-button
+            color="primary"
+            [disabled]="!formIsValid()"
+          >
+            Publish
+          </button>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div fxFlex="30">
+    <mat-card *ngIf="form.thumbnail">
+      <img mat-card-image src="{{ form.thumbnail }}" />
+    </mat-card>
+  </div>
+</div>

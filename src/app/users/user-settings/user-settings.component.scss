@@ -1,0 +1,40 @@
+mat-card {
+  margin: 1em;
+
+  mat-icon {
+    vertical-align: middle;
+  }
+
+  .section-icon {
+    height: auto !important;
+    width: auto !important;
+  }
+
+  .profile-image {
+    margin: 1em 0em;
+    width: fit-content;
+  }
+
+  table {
+    th {
+      min-width: 10em;
+      padding-right: 0.5em;
+      text-align: left;
+    }
+
+    td {
+      width: 100%;
+      padding: 0.5em;
+      display: inline-block;
+      word-break: break-all;
+
+      .copy-button {
+        padding-left: 0.5em;
+      }
+
+      .copy-button:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}

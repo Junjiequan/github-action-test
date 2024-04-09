@@ -1,0 +1,221 @@
+<div fxLayout="row" fxLayout.xs="column" *ngIf="publishedData">
+  <div fxFlex="60">
+    <mat-card>
+      <mat-card-header class="status-header">
+        <div mat-card-avatar class="section-icon">
+          <mat-icon> info </mat-icon>
+        </div>
+        Publication Status
+      </mat-card-header>
+      <mat-card-content>
+        <table>
+          <tr *ngIf="publishedData.status as value">
+            <th>Status</th>
+            <td>{{ value }}</td>
+          </tr>
+          <ng-template
+            [ngIf]="
+              publishedData.status && publishedData.status === 'registered'
+            "
+          >
+            <tr *ngIf="publishedData.registeredTime as value">
+              <th>Registered Time</th>
+              <td>{{ value | date : "yyyy-MM-dd, HH:mm" }}</td>
+            </tr>
+          </ng-template>
+        </table>
+      </mat-card-content>
+
+      <mat-card-actions>
+        <button
+          mat-raised-button
+          color="primary"
+          *ngIf="publishedData.status !== 'registered'"
+          (click)="onRegisterClick(publishedData.doi)"
+        >
+          Register
+        </button>
+      </mat-card-actions>
+    </mat-card>
+
+    <mat-card>
+      <mat-card-header class="general-header">
+        <div mat-card-avatar class="section-icon">
+          <mat-icon> description </mat-icon>
+        </div>
+        General Information
+      </mat-card-header>
+      <mat-card-content>
+        <table>
+          <tr *ngIf="publishedData.title as value">
+            <th>Title</th>
+            <td>{{ value }}</td>
+          </tr>
+          <tr *ngIf="publishedData.abstract as value">
+            <th>Abstract</th>
+            <td>{{ value }}</td>
+          </tr>
+          <tr *ngIf="publishedData.doi as value" id="doiRow">
+            <th>DOI</th>
+            <td>{{ value }}</td>
+          </tr>
+          <tr *ngIf="landingPageUrl">
+            <th>URL</th>
+            <td><span [innerHTML]="landingPageUrl | linky"></span></td>
+          </tr>
+          <tr *ngIf="publishedData.publicationYear as value">
+            <th>Publication Year</th>
+            <td>{{ value }}</td>
+          </tr>
+        </table>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card>
+      <mat-card-header class="creator-header">
+        <div mat-card-avatar class="section-icon">
+          <mat-icon> person </mat-icon>
+        </div>
+        Creator Information
+      </mat-card-header>
+
+      <mat-card-content>
+        <table>
+          <tr *ngIf="publishedData.creator as value">
+            <th>Creator</th>
+            <td>{{ value }}</td>
+          </tr>
+          <tr *ngIf="publishedData.authors as value">
+            <th>Authors</th>
+            <td>{{ value }}</td>
+          </tr>
+          <tr *ngIf="publishedData.affiliation as value">
+            <th>Affiliation</th>
+            <td>{{ value }}</td>
+          </tr>
+          <tr *ngIf="publishedData.publisher as value">
+            <th>Publisher</th>
+            <td>{{ value }}</td>
+          </tr>
+        </table>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card>
+      <mat-card-header class="file-header">
+        <div mat-card-avatar class="section-icon">
+          <mat-icon> folder </mat-icon>
+        </div>
+        File information
+      </mat-card-header>
+
+      <mat-card-content>
+        <table>
+          <tr *ngIf="publishedData.downloadLink as value">
+            <th>Download Link</th>
+            <td>{{ value }}</td>
+          </tr>
+          <tr *ngIf="publishedData.sizeOfArchive as value">
+            <th>Size</th>
+            <td>{{ value | filesize }}</td>
+          </tr>
+          <tr *ngIf="publishedData.numberOfFiles as value">
+            <th>Number of Files</th>
+            <td>{{ value }}</td>
+          </tr>
+          <tr *ngIf="publishedData.resourceType as value">
+            <th>Resource Type</th>
+            <td>{{ value }}</td>
+          </tr>
+          <tr *ngIf="publishedData.dataDescription as value">
+            <th>Data Description</th>
+            <td *ngIf="isUrl(value); else notUrl">
+              <a href="{{ value }}" target="_blank" rel="noopener">
+                {{ value | descriptionTitle }}
+              </a>
+            </td>
+            <ng-template #notUrl>
+              <td>{{ value }}</td>
+            </ng-template>
+          </tr>
+        </table>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card>
+      <mat-card-header class="related-header">
+        <div mat-card-avatar class="section-icon">
+          <mat-icon> library_books </mat-icon>
+        </div>
+        Related Documents
+      </mat-card-header>
+
+      <mat-card-content>
+        <table>
+          <tr
+            *ngIf="
+              publishedData.relatedPublications &&
+              publishedData.relatedPublications.length > 0
+            "
+          >
+            <th>Related Publications</th>
+            <td>{{ publishedData.relatedPublications }}</td>
+          </tr>
+          <tr *ngIf="publishedData.pidArray as pidArray">
+            <th>Dataset IDs</th>
+            <td>
+              <ng-container *ngFor="let pid of pidArray">
+                <a [routerLink]="['/datasets/', pid]">
+                  {{ pid }}
+                </a>
+                <span *ngIf="pidArray.indexOf(pid) < pidArray.length - 1"
+                  >,
+                </span>
+              </ng-container>
+            </td>
+          </tr>
+        </table>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card
+      *ngIf="appConfig.editPublishedData && appConfig.jsonMetadataEnabled"
+    >
+      <mat-card-content>
+        <button
+          mat-raised-button
+          id="editBtn"
+          class="edit-button"
+          color="primary"
+          *ngIf="appConfig.editPublishedData"
+          (click)="onEditClick()"
+        >
+          Edit
+        </button>
+        <ng-container
+          id="jsonMetadataContainer"
+          *ngIf="appConfig.jsonMetadataEnabled"
+        >
+          <button mat-stroked-button (click)="show = !show">
+            {{ show ? "Hide MetaData" : "Show Metadata" }}
+          </button>
+          <br />
+          <div *ngIf="show">
+            <ngx-json-viewer
+              [json]="currentData$ | async"
+              [expanded]="false"
+            ></ngx-json-viewer>
+          </div>
+        </ng-container>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div fxFlex="40">
+    <ng-container *ngIf="publishedData.thumbnail as thumbnail">
+      <mat-card>
+        <img mat-card-image src="{{ thumbnail }}" />
+      </mat-card>
+    </ng-container>
+  </div>
+</div>

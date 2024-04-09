@@ -1,0 +1,19 @@
+mat-table {
+  mat-header-cell:first-child {
+    min-width: 75px;
+    max-width: 75px;
+  }
+
+  mat-cell:first-child {
+    min-width: 75px;
+    max-width: 75px;
+  }
+}
+
+.empty-batch-message {
+  text-align: center;
+
+  mat-icon {
+    vertical-align: middle;
+  }
+}

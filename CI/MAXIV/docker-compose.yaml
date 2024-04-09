@@ -1,0 +1,23 @@
+version: "3.2"
+
+services:
+  scicat-frontend-test:
+    image: frontend-local
+    restart: always
+    ports:
+      - "3001:80"
+  scicat-backend-test:
+    image: backend-local
+    volumes:
+      - ./datasources.json:/usr/src/app/server/datasources.json
+      - ./providers.json:/usr/src/app/server/providers.json
+      - ./config.local.js:/usr/src/app/server/config.local.js
+    ports:
+      - "3000:3000"
+  mongodb:
+      container_name: scicat-db
+      image: "bitnami/mongodb:latest"
+      ports:
+        - "27017:27017"
+      volumes:
+        - "./mongodb_data:/bitnami"

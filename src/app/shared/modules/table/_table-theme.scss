@@ -1,0 +1,52 @@
+@use "@angular/material" as mat;
+
+@mixin color($theme) {
+  $color-config: map-get($theme, "color");
+  $primary: map-get($color-config, "primary");
+
+  mat-table {
+    mat-header-row {
+      background: mat.get-color-from-palette($primary, "default");
+    }
+
+    .mat-sort-header-arrow {
+      color: mat.get-color-from-palette($primary, "default-contrast");
+    }
+
+    mat-header-cell {
+      .mdc-checkbox {
+        .mdc-checkbox__native-control:enabled:not(:checked):not(
+            :indeterminate
+          ):not([data-indeterminate="true"])
+          ~ .mdc-checkbox__background {
+          border-color: mat.get-color-from-palette(
+            $primary,
+            "default-contrast"
+          );
+        }
+
+        .mdc-checkbox__native-control:enabled
+          ~ .mdc-checkbox__background
+          .mdc-checkbox__checkmark {
+          color: mat.get-color-from-palette($primary, "default-contrast");
+        }
+      }
+    }
+
+    mat-cell {
+      .mdc-checkbox
+        .mdc-checkbox__native-control:enabled
+        ~ .mdc-checkbox__background
+        .mdc-checkbox__checkmark {
+        color: mat.get-color-from-palette($primary, "default-contrast");
+      }
+    }
+  }
+}
+
+@mixin theme($theme) {
+  $color-config: mat.get-color-config($theme);
+  @if $color-config != null {
+    @include color($theme);
+  }
+}

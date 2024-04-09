@@ -1,0 +1,121 @@
+<div class="header">
+  <mat-menu #userMenu="matMenu">
+    <button mat-menu-item routerLink="/datasets/">
+      <mat-icon> folder</mat-icon>
+      <span>Datasets</span>
+    </button>
+
+    <button mat-menu-item routerLink="/files/">
+      <mat-icon> text_snippet</mat-icon>
+      <span>Files</span>
+    </button>
+
+    <button mat-menu-item routerLink="/instruments/">
+      <mat-icon>scanner</mat-icon>
+      <span>Instruments</span>
+    </button>
+
+    <ng-container *ngIf="config.jobsEnabled">
+      <button mat-menu-item routerLink="/user/jobs">
+        <mat-icon> transfer_within_a_station</mat-icon>
+        <span>Jobs</span>
+      </button>
+    </ng-container>
+
+    <ng-container *ngIf="config.policiesEnabled">
+      <button mat-menu-item routerLink="/policies/">
+        <mat-icon> cloud_download</mat-icon>
+        <span>Policies</span>
+      </button>
+    </ng-container>
+
+    <button mat-menu-item routerLink="/proposals/">
+      <mat-icon> spa</mat-icon>
+      <span>Proposals</span>
+    </button>
+
+    <button mat-menu-item routerLink="/publishedDatasets/">
+      <mat-icon> chrome_reader_mode</mat-icon>
+      <span>Published Data</span>
+    </button>
+
+    <button mat-menu-item routerLink="/samples/">
+      <mat-icon> center_focus_weak</mat-icon>
+      <span>Samples</span>
+    </button>
+
+    <button mat-menu-item routerLink="/user/" data-cy="setting-button">
+      <mat-icon> settings</mat-icon>
+      <span>Settings</span>
+    </button>
+
+    <button mat-menu-item (click)="logout()" data-cy="logout-button">
+      <mat-icon> exit_to_app</mat-icon>
+      <span>Logout</span>
+    </button>
+  </mat-menu>
+
+  <mat-toolbar class="mat-elevation-z1" color="primary">
+    <a [routerLink]="['/datasets']">
+      <img class="logo" src="../../../assets/images/scicat-logo-white.png" />
+    </a>
+    <a [routerLink]="['/datasets']">
+        <img class="logo" src='../../../assets/images/{{siteIcon}}' />
+    </a>
+    <a class="toplink" [routerLink]="['/datasets']">
+      <h3>{{ status }}</h3>
+    </a>
+
+    <span class="spacer"></span>
+
+    <span>
+      <h6>
+        <a class="toplink" [routerLink]="['/help']">
+          <mat-icon> help </mat-icon>
+          <span class="large-screen-text">Help</span></a
+        >
+      </h6>
+    </span>
+    <span>
+      <h6>
+        <a class="toplink" [routerLink]="['/about']">
+          <mat-icon> info </mat-icon>
+          <span class="large-screen-text">About</span></a
+        >
+      </h6>
+    </span>
+    <span *ngIf="(this.loggedIn$ | async) === false; else userButton">
+      <h6>
+        <a class="toplink" [routerLink]="['/login']" data-cy="login-button">
+          <mat-icon> account_circle </mat-icon>
+          <span class="large-screen-text">Sign in</span>
+        </a>
+      </h6>
+    </span>
+    <ng-template #userButton>
+      <span *ngIf="config.shoppingCartOnHeader" [matMenuTriggerFor]="cartMenu">
+        <button
+          id="cartOnHeaderButton"
+          mat-icon-button
+          matBadge="{{ inBatchIndicator$ | async }}"
+          matBadgePosition="after"
+          matBadgeColor="accent"
+          matBadgeSize="medium"
+        >
+          <mat-icon> shopping_cart </mat-icon>
+        </button>
+      </span>
+
+      <mat-menu class="custom-menu" #cartMenu="matMenu">
+        <batch-card></batch-card>
+      </mat-menu>
+
+      <span>
+        <button mat-button class="user-button" [matMenuTriggerFor]="userMenu">
+          <img class="user-image" src="{{ profileImage$ | async }}" />
+          <div class="large-screen-text">{{ username$ | async }}</div>
+        </button>
+      </span>
+    </ng-template>
+  </mat-toolbar>
+</div>

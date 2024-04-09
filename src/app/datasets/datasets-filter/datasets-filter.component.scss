@@ -1,0 +1,42 @@
+mat-card {
+  margin-top: 0.5rem;
+
+  .mat-mdc-form-field {
+    width: 100%;
+  }
+
+  .section-container {
+    font-size: 1.25rem;
+    font-weight: 425;
+    margin-bottom: 0.5rem;
+    position: relative;
+    margin-top: 1rem;
+
+    .title {
+      float: left;
+    }
+
+    .clear-button {
+      margin-left: auto;
+    }
+
+    .scientific-chips {
+      ::ng-deep .mat-mdc-chip-list-wrapper {
+        margin: 0;
+      }
+    }
+
+    .scientific-chip {
+      height: auto;
+    }
+
+    .scientific-chip-text {
+      white-space: normal;
+      word-break: break-all;
+    }
+  }
+
+  .section-container:first-child {
+    margin-top: unset;
+  }
+}

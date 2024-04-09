@@ -1,0 +1,78 @@
+.attachment-card {
+  width: 22em;
+  float: left;
+  margin: 1em 2em 1em 0;
+
+  img {
+    width: 20em;
+    height: 20em;
+  }
+
+  button {
+    float: right;
+  }
+
+  .submit-button {
+    margin-top: 0.5em;
+  }
+
+  .download-button {
+    min-width: auto;
+    margin: 0;
+    padding: 0 5px;
+  }
+
+  .delete-button {
+    min-width: auto;
+    margin: 0;
+    padding: 0 5px;
+  }
+}
+.file-uploader {
+  margin: 1em;
+}
+
+.font-small {
+  font-size: small !important;
+}
+
+@media only screen and (min-width: 1280px) {
+  .dropzone {
+    align-items: center;
+    background: #dcdcdc;
+    border: dashed 1px grey;
+    display: flex;
+    justify-content: center;
+    height: 350px;
+    width: 500px;
+
+    input {
+      display: none;
+    }
+
+    .instructions {
+      margin: 0.5em;
+      font-size: 1.25em;
+      flex: 1 0 100px;
+      text-align: center;
+    }
+  }
+
+  .file-picker {
+    display: none;
+  }
+
+  .dropzone {
+    margin-top: 1em;
+  }
+}
+
+@media only screen and (max-width: 1279px) {
+  .dropzone {
+    display: none;
+  }
+
+  .file-picker {
+    margin-top: 1em;
+  }
+}
