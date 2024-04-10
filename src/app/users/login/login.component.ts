@@ -78,7 +78,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   redirectOIDC(authURL: string) {
     this.document.location.href = `${this.appConfig.lbBaseURL}/${authURL}`;
 
-    console.log("-Breaking change1234556776");
+    console.log("-Breaking change1");
   }
 
   openPrivacyDialog() {
