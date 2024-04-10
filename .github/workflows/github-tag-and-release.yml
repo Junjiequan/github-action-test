@@ -6,6 +6,7 @@ on:
 
 permissions:
   contents: write
+  packages: write
 env:
   NODE_VERSION: 18.x
 
@@ -31,6 +32,8 @@ jobs:
           name: Release ${{ steps.tag_version.outputs.new_tag }}
           body: ${{ steps.tag_version.outputs.changelog }}
 
+      ## The setup-qemu-action simplifies the setup of QEMU for cross-platform builds
+      ## https://github.com/docker/setup-qemu-action
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
 
