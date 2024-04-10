@@ -7,6 +7,7 @@ on:
 permissions:
   contents: write
   packages: write
+
 env:
   NODE_VERSION: 18.x
 
@@ -70,4 +71,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ steps.tag_version.outputs.new_tag }}
+          tags: ghcr.io/junjiequan/github-action-test:${{ steps.tag_version.outputs.new_tag }}
