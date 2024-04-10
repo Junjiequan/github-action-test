@@ -68,5 +68,4 @@ jobs:
           context: .
           platforms: linux/amd64,linux/arm64/v8
           push: true
-          tags: ghcr.io/junjiequan/github-action-test:latest
-          # tags: ghcr.io/junjiequan/github-action-test:${{ steps.tag_version.outputs.new_tag }}
+          tags: ghcr.io/junjiequan/github-action-test:latest, ghcr.io/junjiequan/github-action-test:${{ steps.tag_version.outputs.new_tag }}
