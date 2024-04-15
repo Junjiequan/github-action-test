@@ -70,7 +70,6 @@ export class AppComponent implements OnDestroy, OnInit, AfterViewChecked {
   ngOnInit() {
     LoopBackConfig.setBaseURL(this.config.lbBaseURL);
     console.log(LoopBackConfig.getPath());
-    console.log("---hello");
     this.store.dispatch(
       setDatasetTableColumnsAction({ columns: this.config.localColumns }),
     );
@@ -105,10 +104,12 @@ export class AppComponent implements OnDestroy, OnInit, AfterViewChecked {
   }
 
   ngAfterViewChecked() {
+    console.log("-111111");
     this.cdRef.detectChanges();
   }
 
   ngOnDestroy() {
+    console.log("-222222");
     this.userMessageSubscription.unsubscribe();
   }
 
