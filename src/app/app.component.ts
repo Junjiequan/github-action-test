@@ -104,6 +104,7 @@ export class AppComponent implements OnDestroy, OnInit, AfterViewChecked {
   }
 
   ngAfterViewChecked() {
+    console.log("-111111");
     this.cdRef.detectChanges();
   }
 
