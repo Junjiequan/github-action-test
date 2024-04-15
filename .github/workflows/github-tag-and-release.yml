@@ -6,6 +6,7 @@ on:
 
 env:
   NODE_VERSION: 18.x
+  RELEASE_BRANCH: release
 
 jobs:
   build:
@@ -20,12 +21,13 @@ jobs:
         id: tag_version
         uses: mathieudutour/github-tag-action@v6.2
         with:
+          release_branches: ${{ env.RELEASE_BRANCH }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create a GitHub release
         uses: ncipollo/release-action@v1
         with:
-          # tag: ${{ steps.tag_version.outputs.new_tag }}
+          tag: ${{ steps.tag_version.outputs.new_tag }}
           name: Release ${{ steps.tag_version.outputs.new_tag }}
           body: ${{ steps.tag_version.outputs.changelog }}
 
