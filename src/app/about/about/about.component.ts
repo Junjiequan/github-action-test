@@ -44,7 +44,7 @@ export class AboutComponent implements OnInit {
         "Scientific datasets are linked to publications (DOI, PID). " +
         "SciCat helps to keep track of data provenance (i.e. the steps leading to the final results). " +
         "Scicat allows users to find data based on the metadata (both your own data and other peoples’ public data). " +
-        "In the long term, SciCat will help to automate scientific analysis workflows.";
+        "In the long term, SciCat will help to automate scientific analysis workflows2.";
       this.accessText =
         "Access to the online catalogue of open data will be given to a user," +
         " providing the user registers with ESS " +
