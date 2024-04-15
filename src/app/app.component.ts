@@ -109,6 +109,7 @@ export class AppComponent implements OnDestroy, OnInit, AfterViewChecked {
   }
 
   ngOnDestroy() {
+    console.log("-222222");
     this.userMessageSubscription.unsubscribe();
   }
 
