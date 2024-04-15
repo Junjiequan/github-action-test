@@ -25,9 +25,10 @@ jobs:
       - name: Create a GitHub release
         uses: ncipollo/release-action@v1
         with:
-          # tag: ${{ steps.tag_version.outputs.new_tag }}
+          tag: ${{ steps.tag_version.outputs.new_tag }}
           name: Release ${{ steps.tag_version.outputs.new_tag }}
           body: ${{ steps.tag_version.outputs.changelog }}
+          skipIfReleaseExists: true
 
       ## The setup-qemu-action simplifies the setup of QEMU for cross-platform builds
       ## https://github.com/docker/setup-qemu-action
