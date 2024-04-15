@@ -32,7 +32,7 @@ export class AboutComponent implements OnInit {
       "http://www.snf.ch/en/theSNSF/research-policies/open_research_data/Pages/default.aspx#Guidelines%20and%20Regulations";
     this.PSIDataPolicy = "https://www.psi.ch/en/science/psi-data-policy";
     this.aboutText =
-      "Scicat allows users to access data and metadata from experiments";
+      "Scicat allows users to access data and metadata from experiments1";
     this.accessText = "Users must comply with access policy of instruments";
     this.termsText = "Data can be used freely under the CC-BY-4.0 licence";
     if (this.facility === "ESS") {
