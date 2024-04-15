@@ -52,19 +52,9 @@ jobs:
       - name: Install Node.js dependencies
         run: npm ci
 
-      - name: Create image tags
-        id: meta
-        uses: docker/metadata-action@v5
-        with:
-          images: ghcr.io/junjiequan/github-action-test
-          flavor: latest=true
-          tags: |
-            type=raw,value=stable
-            type=ref,event=tag
-
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
           context: .
           push: true
-          tags: ghcr.io/junjiequan/github-action-test:latest, ghcr.io/junjiequan/github-action-test:${{ steps.tag_version.outputs.new_tag }}
+          tags: ghcr.io/junjiequan/github-action-test:${{ steps.tag_version.outputs.new_tag }}
