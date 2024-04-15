@@ -6,6 +6,7 @@ on:
 
 env:
   NODE_VERSION: 18.x
+  RELEASE_BRANCH: release
 
 jobs:
   build:
@@ -20,7 +21,7 @@ jobs:
         id: tag_version
         uses: mathieudutour/github-tag-action@v6.2
         with:
-          release_branches: release
+          release_branches: ${{ env.RELEASE_BRANCH }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create a GitHub release
@@ -29,7 +30,6 @@ jobs:
           tag: ${{ steps.tag_version.outputs.new_tag }}
           name: Release ${{ steps.tag_version.outputs.new_tag }}
           body: ${{ steps.tag_version.outputs.changelog }}
-          skipIfReleaseExists: true
 
       ## The setup-qemu-action simplifies the setup of QEMU for cross-platform builds
       ## https://github.com/docker/setup-qemu-action
