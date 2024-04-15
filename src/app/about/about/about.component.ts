@@ -48,7 +48,7 @@ export class AboutComponent implements OnInit {
       this.accessText =
         "Access to the online catalogue of open data will be given to a user," +
         " providing the user registers with ESS " +
-        " and accepts the terms of the ESS scientific data policy ";
+        " and accepts the terms of the ESS scientific data policy 33";
       this.termsText =
         "All scientific datasets are licensed under the CC-BY-4.0 license ";
     } else if (this.facility === "PSI") {
