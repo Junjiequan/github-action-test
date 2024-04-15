@@ -32,7 +32,7 @@ export class AboutComponent implements OnInit {
       "http://www.snf.ch/en/theSNSF/research-policies/open_research_data/Pages/default.aspx#Guidelines%20and%20Regulations";
     this.PSIDataPolicy = "https://www.psi.ch/en/science/psi-data-policy";
     this.aboutText =
-      "Scicat allows users to access data and metadata from experiments";
+      "Scicat allows users to access data and metadata from experiments1";
     this.accessText = "Users must comply with access policy of instruments";
     this.termsText = "Data can be used freely under the CC-BY-4.0 licence";
     if (this.facility === "ESS") {
@@ -44,11 +44,11 @@ export class AboutComponent implements OnInit {
         "Scientific datasets are linked to publications (DOI, PID). " +
         "SciCat helps to keep track of data provenance (i.e. the steps leading to the final results). " +
         "Scicat allows users to find data based on the metadata (both your own data and other peoples’ public data). " +
-        "In the long term, SciCat will help to automate scientific analysis workflows.";
+        "In the long term, SciCat will help to automate scientific analysis workflows2.";
       this.accessText =
         "Access to the online catalogue of open data will be given to a user," +
         " providing the user registers with ESS " +
-        " and accepts the terms of the ESS scientific data policy ";
+        " and accepts the terms of the ESS scientific data policy 33";
       this.termsText =
         "All scientific datasets are licensed under the CC-BY-4.0 license ";
     } else if (this.facility === "PSI") {
