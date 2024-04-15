@@ -330,9 +330,9 @@ export class FireLoopRef<T> {
         subject.next(res);
       }
     });
-    if (event.match("dispose")) {
-      setTimeout(() => subject.next());
-    }
+    // if (event.match("dispose")) {
+    //   setTimeout(() => subject.next());
+    // }
     // This event listener will be wiped within socket.connections
     this.socket.sharedObservables.sharedOnDisconnect.subscribe(() =>
       subject.complete(),
