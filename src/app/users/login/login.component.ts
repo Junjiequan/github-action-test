@@ -83,6 +83,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     console.log("-Breaking 3 ");
     console.log("-Breaking 4 ");
     console.log("-Breaking 5 ");
+    console.log("-Breaking 6 ");
   }
 
   openPrivacyDialog() {
