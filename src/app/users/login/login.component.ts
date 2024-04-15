@@ -80,7 +80,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     console.log("-Breaking change123");
     console.log("-Breaking 1");
-    console.log("-Breaking change123");
+    console.log("-Breaking 2");
   }
 
   openPrivacyDialog() {
