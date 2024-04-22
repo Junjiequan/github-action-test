@@ -54,15 +54,13 @@ jobs:
       - name: Install Node.js dependencies
         run: npm ci
 
-      # - name: Create image tags
-      #   id: meta
-      #   uses: docker/metadata-action@v5
-      #   with:
-      #     images: ghcr.io/junjiequan/github-action-test
-      #     flavor: latest=true
-      #     tags: |
-      #       type=raw,value=stable
-      #       type=ref,event=tag
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: name/app
+          tags: |
+            type=raw,value={{date 'YYYYMM'}}
 
       - name: Generate Date Tag
         id: date_tag
@@ -75,5 +73,5 @@ jobs:
           push: true
           tags: |
             ghcr.io/junjiequan/github-action-test:stable
-            ghcr.io/junjiequan/github-action-test:${{ steps.date_tag.outputs.NOW }}
+            ghcr.io/junjiequan/github-action-test:r_${{ steps.meta.outputs.tags }}
             ghcr.io/junjiequan/github-action-test:${{ steps.tag_version.outputs.new_tag }}
