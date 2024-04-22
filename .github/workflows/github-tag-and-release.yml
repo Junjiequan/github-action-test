@@ -69,4 +69,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: ghcr.io/junjiequan/github-action-test:${{ steps.tag_version.outputs.new_tag }}
+          tags: ghcr.io/junjiequan/github-action-test:stable, ghcr.io/junjiequan/github-action-test:${{ steps.tag_version.outputs.new_tag }}
