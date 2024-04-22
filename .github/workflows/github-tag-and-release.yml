@@ -62,9 +62,9 @@ jobs:
           tags: |
             type=raw,value={{date 'YYYYMM'}}
 
-      - name: Generate Date Tag
-        id: date_tag
-        run: echo "NOW=$(date +'%Y%m')" >> $GITHUB_ENV
+      # - name: Generate Date Tag
+      #   id: date_tag
+      #   run: echo "NOW=$(date +'%Y%m')" >> $GITHUB_ENV
 
       - name: Build and push
         uses: docker/build-push-action@v5
