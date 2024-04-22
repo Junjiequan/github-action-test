@@ -66,7 +66,7 @@ jobs:
 
       - name: Generate Date Tag
         id: date_tag
-        run: echo "DATE_TAG=$(date +'%Y%m%d')" >> $GITHUB_ENV
+        run: echo "::set-env name=NOW::v$(date +'%Y%m')"
 
       - name: Build and push
         uses: docker/build-push-action@v5
@@ -75,5 +75,5 @@ jobs:
           push: true
           tags: |
             ghcr.io/junjiequan/github-action-test:stable
-            ghcr.io/junjiequan/github-action-test:${{ steps.date_tag.outputs.DATE_TAG }}
+            ghcr.io/junjiequan/github-action-test:${{ steps.date_tag.outputs.NOW }}
             ghcr.io/junjiequan/github-action-test:${{ steps.tag_version.outputs.new_tag }}
