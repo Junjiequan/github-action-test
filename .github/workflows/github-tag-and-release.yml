@@ -58,20 +58,16 @@ jobs:
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: name/app
+          images: ghcr.io/junjiequan/github-action-test
           tags: |
-            type=raw,value={{date 'YYYYMM'}}
-
-      # - name: Generate Date Tag
-      #   id: date_tag
-      #   run: echo "NOW=$(date +'%Y%m')" >> $GITHUB_ENV
+            type=raw,value=stable
+            type=raw,value=${{ steps.tag_version.outputs.new_tag }}
+            type=semver,pattern={{version}}
+            type=raw,value={{date 'YYYY-MM'}}
 
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
           context: .
           push: true
-          tags: |
-            ghcr.io/junjiequan/github-action-test:stable
-            ghcr.io/junjiequan/github-action-test:r_${{ steps.meta.outputs.tags }}
-            ghcr.io/junjiequan/github-action-test:${{ steps.tag_version.outputs.new_tag }}
+          tags: ${{ steps.meta.outputs.tags }}
