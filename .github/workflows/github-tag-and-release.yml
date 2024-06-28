@@ -1,72 +1,72 @@
-name: Bump version
-on:
-  push:
-    branches:
-      - release
+# name: Bump version
+# on:
+#   push:
+#     branches:
+#       - release
 
-env:
-  NODE_VERSION: 18.x
-  RELEASE_BRANCH: release
+# env:
+#   NODE_VERSION: 18.x
+#   RELEASE_BRANCH: release
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v4
+#     steps:
+#       - uses: actions/checkout@v4
 
-      ## Commit message examples for Release type (patch|minor|major) can be found:
-      ## https://github.com/mathieudutour/github-tag-action
-      - name: Bump version and push tag
-        id: tag_version
-        uses: mathieudutour/github-tag-action@v6.2
-        with:
-          release_branches: ${{ env.RELEASE_BRANCH }}
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+#       ## Commit message examples for Release type (patch|minor|major) can be found:
+#       ## https://github.com/mathieudutour/github-tag-action
+#       - name: Bump version and push tag
+#         id: tag_version
+#         uses: mathieudutour/github-tag-action@v6.2
+#         with:
+#           release_branches: ${{ env.RELEASE_BRANCH }}
+#           github_token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Create a GitHub release
-        uses: ncipollo/release-action@v1
-        with:
-          tag: ${{ steps.tag_version.outputs.new_tag }}
-          name: Release ${{ steps.tag_version.outputs.new_tag }}
-          body: ${{ steps.tag_version.outputs.changelog }}
+#       - name: Create a GitHub release
+#         uses: ncipollo/release-action@v1
+#         with:
+#           tag: ${{ steps.tag_version.outputs.new_tag }}
+#           name: Release ${{ steps.tag_version.outputs.new_tag }}
+#           body: ${{ steps.tag_version.outputs.changelog }}
 
-      ## The setup-qemu-action simplifies the setup of QEMU for cross-platform builds
-      ## https://github.com/docker/setup-qemu-action
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
+#       ## The setup-qemu-action simplifies the setup of QEMU for cross-platform builds
+#       ## https://github.com/docker/setup-qemu-action
+#       - name: Set up QEMU
+#         uses: docker/setup-qemu-action@v3
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
+#       - name: Set up Docker Buildx
+#         uses: docker/setup-buildx-action@v3
 
-      - name: Login to GitHub Container Registry
-        uses: docker/login-action@v3
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+#       - name: Login to GitHub Container Registry
+#         uses: docker/login-action@v3
+#         with:
+#           registry: ghcr.io
+#           username: ${{ github.actor }}
+#           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
+#       - name: Set up Node.js
+#         uses: actions/setup-node@v4
+#         with:
+#           node-version: ${{ env.NODE_VERSION }}
 
-      - name: Install Node.js dependencies
-        run: npm ci
+#       - name: Install Node.js dependencies
+#         run: npm ci
 
-      # - name: Create image tags
-      #   id: meta
-      #   uses: docker/metadata-action@v5
-      #   with:
-      #     images: ghcr.io/junjiequan/github-action-test
-      #     flavor: latest=true
-      #     tags: |
-      #       type=raw,value=stable
-      #       type=ref,event=tag
+#       # - name: Create image tags
+#       #   id: meta
+#       #   uses: docker/metadata-action@v5
+#       #   with:
+#       #     images: ghcr.io/junjiequan/github-action-test
+#       #     flavor: latest=true
+#       #     tags: |
+#       #       type=raw,value=stable
+#       #       type=ref,event=tag
 
-      - name: Build and push
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          push: true
-          tags: ghcr.io/junjiequan/github-action-test:stable, ghcr.io/junjiequan/github-action-test:${{ steps.tag_version.outputs.new_tag }}
+#       - name: Build and push
+#         uses: docker/build-push-action@v5
+#         with:
+#           context: .
+#           push: true
+#           tags: ghcr.io/junjiequan/github-action-test:stable, ghcr.io/junjiequan/github-action-test:${{ steps.tag_version.outputs.new_tag }}
