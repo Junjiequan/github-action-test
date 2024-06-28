@@ -25,13 +25,13 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      # - name: Create image tags
-      #   id: meta
-      #   uses: docker/metadata-action@v5
-      #   with:
-      #     images: ghcr.io/junjiequan/github-action-test
-      #     flavor: latest=true # adds :latest tag to outputs.tags
-      #     tags: type=sha,format=long,prefix= # adds :<sha> tag to outputs.tags
+      - name: Create image tags
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ghcr.io/junjiequan/github-action-test
+          flavor: latest=true # adds :latest tag to outputs.tags
+          tags: type=sha,format=long,prefix= # adds :<sha> tag to outputs.tags
 
       - name: Cache node_modules
         id: cache-node-modules
@@ -44,8 +44,8 @@ jobs:
         if: steps.cache-node-modules.outputs.cache-hit != 'true'
         run: npm ci
 
-      # - name: Build and push
-      #   uses: docker/build-push-action@v5
-      #   with:
-      #     push: true
-      #     tags: ${{ steps.meta.outputs.tags }}
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
