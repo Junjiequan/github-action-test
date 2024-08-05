@@ -50,6 +50,7 @@ jobs:
 
       - name: Prepare SDK for publishing
         run: |
+          pwd && ls -la
           cd sdk
           echo "{}" > package.json
           npm init -y
