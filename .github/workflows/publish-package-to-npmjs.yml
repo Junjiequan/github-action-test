@@ -45,6 +45,9 @@ jobs:
           chmod +x ./scripts/generate-sdk-local.sh
           ./scripts/generate-sdk-local.sh
 
+      - name: Get path
+        run: pwd
+
       - name: Prepare SDK for publishing
         run: |
           cd sdk
