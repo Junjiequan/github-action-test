@@ -24,7 +24,7 @@ jobs:
           registry-url: "https://registry.npmjs.org/"
 
       - name: Run the SDK generation script
-        run: ./scripts/generate-sdk-local.sh
+        run: chmod +x ./scripts/generate-sdk-local.sh
 
       - name: Prepare SDK for publishing
         run: |
