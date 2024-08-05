@@ -51,7 +51,6 @@ jobs:
       - name: Prepare SDK for publishing
         run: |
           pwd && ls -la
-          cd sdk
           echo "{}" > package.json
           npm init -y
           jq '.name="your-sdk-name" | .version="0.0.1" | .main="index.js" | .author="Your Name" | .license="MIT" | .private=false' package.json > temp.json && mv temp.json package.json
