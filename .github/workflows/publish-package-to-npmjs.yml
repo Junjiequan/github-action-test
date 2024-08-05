@@ -48,14 +48,17 @@ jobs:
       - name: Get path
         run: pwd && ls -la
 
+      - name: Fix permissions
+        run: sudo chown -R $USER:$USER ./sdk
+
       - name: Prepare SDK for publishing
         run: |
-          sudo npm init -y
-          sudo jq '.name="your-sdk-name" | .version="0.0.1" | .main="index.js" | .author="Your Name" | .license="MIT" | .private=false' package.json > temp.json && mv temp.json package.json
+          npm init -y
+          jq '.name="your-sdk-name" | .version="0.0.1" | .main="index.js" | .author="Your Name" | .license="MIT" | .private=false' package.json > temp.json && mv temp.json package.json
         working-directory: ./sdk
 
       - name: Publish SDK to npm
-        run: npm publish
+        run: sudo npm publish
         working-directory: ./sdk
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
