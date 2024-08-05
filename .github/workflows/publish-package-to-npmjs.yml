@@ -46,7 +46,7 @@ jobs:
           ./scripts/generate-sdk-local.sh
 
       - name: Get path
-        run: pwd
+        run: pwd && ls -la
 
       - name: Prepare SDK for publishing
         run: |
