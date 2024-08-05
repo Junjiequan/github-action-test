@@ -43,7 +43,7 @@ jobs:
         run: pwd
 
       - name: Run the SDK generation script
-        run: chmod +x ./scripts/generate-sdk-local.sh
+        run: chmod +x sh ./scripts/generate-sdk-local.sh
 
       - name: Show current directory
         run: cd scripts && ls -la
