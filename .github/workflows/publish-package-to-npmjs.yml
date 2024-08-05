@@ -42,8 +42,10 @@ jobs:
       - name: Show current directory
         run: pwd
 
-      - name: Run the SDK generation script
-        run: chmod +x sh ./scripts/generate-sdk-local.sh
+      - name: Make generate-sdk-local.sh executable and run it
+        run: |
+          chmod +x ./scripts/generate-sdk-local.sh
+          ./scripts/generate-sdk-local.sh
 
       - name: Show current directory
         run: cd scripts && ls -la
