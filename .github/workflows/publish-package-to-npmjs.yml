@@ -1,0 +1,41 @@
+name: Generate and Publish SDK
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+env:
+  NODE_VERSION: 18.x
+
+jobs:
+  generate-sdk:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{env.NODE_VERSION}}
+          registry-url: "https://registry.npmjs.org/"
+
+      - name: Run the SDK generation script
+        run: ./scripts/your-script.sh
+
+      - name: Prepare SDK for publishing
+        run: |
+          cd sdk
+          echo "{}" > package.json
+          npm init -y
+          jq '.name="your-sdk-name" | .version="0.0.1" | .main="index.js" | .author="Your Name" | .license="MIT" | .private=false' package.json > temp.json && mv temp.json package.json
+        working-directory: ./sdk
+
+      - name: Publish SDK to npm
+        run: npm publish
+        working-directory: ./sdk
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
