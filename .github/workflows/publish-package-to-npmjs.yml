@@ -46,7 +46,7 @@ jobs:
         run: chmod +x ./scripts/generate-sdk-local.sh
 
       - name: Show current directory
-        run: cd /scripts && ls -la
+        run: cd scripts && ls -la
 
       - name: Show current directory
         run: ls -la
