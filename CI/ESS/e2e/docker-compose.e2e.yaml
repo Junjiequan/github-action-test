@@ -26,7 +26,6 @@ services:
       - "./CI/ESS/e2e/.env.backend-next:/home/node/app/.env"
     depends_on:
       - mongodb
-      - scichat-loopback
     labels:
       - "traefik.http.routers.backend.rule=PathPrefix(`/api/v3`, `/auth/msad`)"
       - "traefik.http.routers.backend.entrypoints=web"
