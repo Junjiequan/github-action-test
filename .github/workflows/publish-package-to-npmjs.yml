@@ -54,11 +54,11 @@ jobs:
       - name: Prepare SDK for publishing
         run: |
           npm init -y
-          jq '.name="your-sdk-name" | .version="0.0.1" | .main="index.js" | .author="Your Name" | .license="MIT" | .private=false' package.json > temp.json && mv temp.json package.json
+          jq '.name="@scicat-sdk/typescript-angular" | .version="0.0.1" | .main="index.js" | .author="Your Name" | .license="MIT" | .private=false' package.json > temp.json && mv temp.json package.json
         working-directory: ./sdk
 
       - name: Publish SDK to npm
-        run: sudo npm publish
+        run: npm publish --provenance --access public
         working-directory: ./sdk
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
