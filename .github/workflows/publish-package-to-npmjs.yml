@@ -5,8 +5,6 @@ on:
     branches:
       - main
   workflow_dispatch:
-  permissions:
-    contents: read
 
 env:
   NODE_VERSION: 18.x
@@ -36,7 +34,6 @@ jobs:
         run: |
           npm install -g wait-on
           wait-on http://localhost:3000/api/v3/health --timeout 200000
-
 
       - name: Publish SDK to npm
         run: |
