@@ -42,7 +42,6 @@ jobs:
 
       - name: Publish SDK to npm
         run: |
-          npm install typescript@~5.1.6
           npm install
           npm run build
           cd dist && npm publish --access public
