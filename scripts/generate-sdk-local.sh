@@ -16,7 +16,7 @@ docker run \
     -i /local/swagger-schema.json \
     -g typescript-angular \
     -o /local/sdk \
-    --additional-properties=withInterfaces=true,ngVersion=16.2.12
+    -c /local/scripts/typescript-sdk.json
 
 # Remove the Swagger schema file
 rm ./swagger-schema.json
