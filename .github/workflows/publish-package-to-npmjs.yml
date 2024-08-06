@@ -55,7 +55,7 @@ jobs:
       - name: Publish SDK to npm
         run: |
           npm install
-          npm build
+          npm run build
           npm publish dist --access public
         working-directory: ./sdk
         env:
