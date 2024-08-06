@@ -44,7 +44,7 @@ jobs:
         run: |
           npm install
           npm run build
-          npm publish dist --access public
+          cd dist && npm publish --access public
         working-directory: ./sdk
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
