@@ -66,6 +66,7 @@ jobs:
   #         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
   pypi-publish:
+    needs: spin-up-backend
     name: Publish release to PyPI
     runs-on: ubuntu-latest
     environment:
