@@ -71,7 +71,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: pypi
-      url: https://pypi.org/p/@scicat-sdk/python
+      url: https://pypi.org/p/@scicat-sdk-python
     permissions:
       id-token: write
     steps:
@@ -98,7 +98,6 @@ jobs:
       - name: Build package
         run: |
           python setup.py sdist bdist_wheel
-          ls -alh dist/
         working-directory: ./sdk/python
 
       - name: Publish package distributions to PyPI

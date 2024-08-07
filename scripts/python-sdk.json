@@ -1,5 +1,5 @@
 {
-  "packageName": "@scicat-sdk/python",
+  "packageName": "@scicat-sdk-python",
   "projectName": "Scicat-Python-SDK",
   "packageVerion": "0.0.1",
   "inputSpec": "/local/swagger-schema.json",
