@@ -81,7 +81,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: sdk
-          path: ./sdk
+          path: ./sdk/
 
       - name: Set up Python
         uses: actions/setup-python@v4
