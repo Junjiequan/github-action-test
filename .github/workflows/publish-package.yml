@@ -71,7 +71,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: pypi
-      url: https://pypi.org/p/@scicat-sdk-python
+      url: https://pypi.org/p/Scicat-Python-SDK
     permissions:
       id-token: write
     steps:
@@ -104,4 +104,3 @@ jobs:
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           packages-dir: ./sdk/python
-          #
