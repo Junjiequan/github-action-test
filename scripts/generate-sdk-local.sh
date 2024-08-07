@@ -8,15 +8,19 @@ curl -o ./swagger-schema.json http://localhost:3000/explorer-json
 # Remove the existing SDK directory if it exists
 rm -rf ./sdk
 
-# Run the OpenAPI Generator CLI in a Docker container to generate the SDK
+# Generate Typescript SDK
+# docker run \
+#     --rm \
+#     -v "${PWD}":/local \
+#     openapitools/openapi-generator-cli generate \
+#     -c /local/scripts/typescript-sdk.json \
+
+# Generate Python SDK
 docker run \
     --rm \
     -v "${PWD}":/local \
     openapitools/openapi-generator-cli generate \
-    -i /local/swagger-schema.json \
-    -g typescript-angular \
-    -o /local/sdk \
-    -c /local/scripts/typescript-sdk.json
+    -c /local/scripts/python-sdk.json \
 
 # Remove the Swagger schema file
 rm ./swagger-schema.json
