@@ -41,7 +41,7 @@ jobs:
       - name: Upload generated SDK JSON
         uses: actions/upload-artifact@v3
         with:
-          name: sdk-json
+          name: sdk
           path: ./sdk
 
   # npm-publish:
